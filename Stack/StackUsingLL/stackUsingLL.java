@@ -1,5 +1,3 @@
-package StackUsingLL;
-
 public class stackUsingLL {
     CreationSingly.SinglyLinkedList LinkedList;
 

@@ -30,52 +30,61 @@ class circularQueue {
                 return false;
             }
         }
-        //enQueue
-        public void enQueue(int value){
-            if(isFull()){
+
+        // enQueue
+        public void enQueue(int value) {
+            if (isFull()) {
                 System.out.println("The Queue is Full");
-            }else if(isEmpty()){
+            } else if (isEmpty()) {
                 beginningOfQueue = 0;
                 topOfQueue++;
                 arr[topOfQueue] = value;
-                System.out.println("Successfully inserted the "+value+" in the Queue");
-            }else{
-                if(topOfQueue+1==size){
+                System.out.println("Successfully inserted the " + value + " in the Queue");
+            } else {
+                if (topOfQueue + 1 == size) {
                     topOfQueue = 0;
-                }else{
+                } else {
                     topOfQueue++;
                 }
                 arr[topOfQueue] = value;
-                System.out.println("Successfully inserted the "+value+" in the Queue");
+                System.out.println("Successfully inserted the " + value + " in the Queue");
             }
         }
-        //deQueue
-        public int deQueue(){
-            if(isEmpty()){
+
+        // deQueue
+        public int deQueue() {
+            if (isEmpty()) {
                 System.out.println("The Queue is empty");
                 return -1;
-            }else{
+            } else {
                 int result = arr[beginningOfQueue];
                 arr[beginningOfQueue] = 0;
-                if(beginningOfQueue == topOfQueue){
+                if (beginningOfQueue == topOfQueue) {
                     beginningOfQueue = topOfQueue = -1;
-                }else if(beginningOfQueue+1 == size){
+                } else if (beginningOfQueue + 1 == size) {
                     beginningOfQueue = 0;
-                }else{
+                } else {
                     beginningOfQueue++;
                 }
                 return result;
             }
-            //peek 
-            public int peek(){
-                if(isEmpty()){
-                    System.out.println("The Queue is empty");
-                    return -1;
-                }else{
-                    return arr[beginningOfQueue];
-                }
-            }
 
+        }
+
+        // peek
+        public int peek() {
+            if (isEmpty()) {
+                System.out.println("The Queue is empty");
+                return -1;
+            } else {
+                return arr[beginningOfQueue];
+            }
+        }
+
+        //delete Queue
+        public void delete(){
+            arr = null;
+            System.out.println("The Queue successfully deleated");
         }
     }
 
