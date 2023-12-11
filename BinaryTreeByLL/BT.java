@@ -36,6 +36,17 @@ public class BT {
             inOrder(node.right);
         }
 
+        //Post order Traversal
+        public void postOrder(BinaryNode node) {
+            if (node == null) {
+                return;
+            }
+            postOrder(node.left);
+            postOrder(node.right);
+            System.out.println(node.value + "  ");
+            
+        }
+
         // Level Order Traversal
         public void levelOrder() {
             Queue<BinaryNode> queue = new LinkedList<>();
@@ -172,36 +183,37 @@ public class BT {
 
     public static void main(String[] args) {
         BinaryTreeLL binarytree = new BinaryTreeLL();
-        // BinaryNode N1 = new BinaryNode();
-        // N1.value = "N1";
-        // BinaryNode N2 = new BinaryNode();
-        // N2.value = "N2";
-        // BinaryNode N3 = new BinaryNode();
-        // N3.value = "N3";
-        // binarytree.root = N1;
-        // N1.left = N2;
-        // N1.right = N3;
+        BinaryNode N1 = new BinaryNode();
+        N1.value = "N1";
+        BinaryNode N2 = new BinaryNode();
+        N2.value = "N2";
+        BinaryNode N3 = new BinaryNode();
+        N3.value = "N3";
+        binarytree.root = N1;
+        N1.left = N2;
+        N1.right = N3;
         // // binarytree.levelOrder(N1);
         // // System.out.println(binarytree.search("N2"));
         // binarytree.levelOrder(N1);
         // binarytree.insert("N4");
         // binarytree.levelOrder(N1);
-        binarytree.insert("N1");
-        binarytree.insert("N2");
-        binarytree.insert("N3");
-        binarytree.insert("N4");
-        binarytree.insert("N5");
-        binarytree.insert("N6");
+        // binarytree.insert("N1");
+        // binarytree.insert("N2");
+        // binarytree.insert("N3");
+        // binarytree.insert("N4");
+        // binarytree.insert("N5");
+        // binarytree.insert("N6");
+        binarytree.postOrder(N1);
 
         // binarytree.levelOrder();
         // System.out.println(binarytree.getDeepestNode().value);
-        binarytree.levelOrder();
-        System.out.println();
+        // binarytree.levelOrder();
+        // System.out.println();
         // binarytree.deleteDeepestNode();
         // binarytree.levelOrder();
-        binarytree.deleteNode("N2");
-        binarytree.levelOrder();
-        binarytree.deletetree();
+        // binarytree.deleteNode("N2");
+        // binarytree.levelOrder();
+        // binarytree.deletetree();
 
     }
 }

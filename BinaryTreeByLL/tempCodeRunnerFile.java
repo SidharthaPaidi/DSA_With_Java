@@ -1,0 +1,9 @@
+    BinaryNode N1 = new BinaryNode();
+        N1.value = "N1";
+        BinaryNode N2 = new BinaryNode();
+        N2.value = "N2";
+        BinaryNode N3 = new BinaryNode();
+        N3.value = "N3";
+        binarytree.root = N1;
+        N1.left = N2;
+        N1.right = N3;
