@@ -120,7 +120,8 @@ public class BST {
                 root.right = deleteNode(root.right, value);
             }else{
                 if(root.left!=null && root.right!=null){
-                    BinaryNode successorNode = minimumNode(root.right);
+                    BinaryNode temp = root;
+                    BinaryNode successorNode = minimumNode(temp.right);
                     root.value = successorNode.value;
                     root.right = deleteNode(root.right, successorNode.value);
                 }else if(root.left!=null){
