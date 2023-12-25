@@ -49,7 +49,7 @@ public class AdjMatGraph {
       ArrayList<GraphNode> neighbors = new ArrayList<GraphNode>();
       int nodeIndex = node.index;
       for (int i = 0; i < adjacencyMatrix.length; i++) {
-        if (adjacencyMatrix[nodeIndex][i] == 1) {
+        if (adjacencyMatrix[i][nodeIndex] == 1) {
           neighbors.add(nodeList.get(i));
         }
       }
@@ -76,10 +76,36 @@ public class AdjMatGraph {
 
     }
 
-    public void bfs(){
-      for(GraphNode node : nodeList) {
-        if(!node.isVisited){
+    public void bfs() {
+      for (GraphNode node : nodeList) {
+        if (!node.isVisited) {
           bfsVisit(node);
+        }
+      }
+    }
+
+    // dfs
+    public void dfsVisit(GraphNode node) {
+      Stack<GraphNode> stack = new Stack<GraphNode>();
+      stack.push(node);
+      while (!stack.isEmpty()) {
+        GraphNode current = stack.pop();
+        System.out.print(current.name + " ");
+        current.isVisited = true;
+        ArrayList<GraphNode> neighbors = getNeighbors(current);
+        for (GraphNode neighbor : neighbors) {
+          if (!neighbor.isVisited) {
+            stack.push(neighbor);
+            neighbor.isVisited = true;
+          }
+        }
+      }
+    }
+
+    public void dfs() {
+      for (GraphNode node : nodeList) {
+        if (!node.isVisited) {
+          dfsVisit(node);
         }
       }
     }
@@ -101,7 +127,10 @@ public class AdjMatGraph {
     g.addUndirectedEdge(2, 3);
     g.addUndirectedEdge(3, 4);
     System.out.println(g.toString());
-    g.bfs();
+    // System.out.println("BFS");
+    // g.bfs();
+    System.out.println("DFS");
+    g.dfs();
 
   }
 

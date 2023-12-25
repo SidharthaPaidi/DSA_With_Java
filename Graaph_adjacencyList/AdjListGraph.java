@@ -17,21 +17,19 @@ public class AdjListGraph {
 
     public static class Graph {
 
-
         ArrayList<GraphNode> nodeList = new ArrayList<GraphNode>();
 
-        public Graph(ArrayList<GraphNode> nodeList){
+        public Graph(ArrayList<GraphNode> nodeList) {
             this.nodeList = nodeList;
         }
 
-        public void addUndirectedEdge(int i , int j){
+        public void addUndirectedEdge(int i, int j) {
             GraphNode first = nodeList.get(i);
             GraphNode second = nodeList.get(j);
             first.neighbors.add(second);
             second.neighbors.add(first);
 
         }
-
 
         // For printing Graph to the console
         public String toString() {
@@ -50,15 +48,15 @@ public class AdjListGraph {
             return s.toString();
         }
 
-        public void bfsVisit(GraphNode node){
+        public void bfsVisit(GraphNode node) {
             LinkedList<GraphNode> queue = new LinkedList<GraphNode>();
             queue.add(node);
             while (!queue.isEmpty()) {
                 GraphNode currentNode = queue.remove();
                 currentNode.isVisited = true;
                 System.out.print(currentNode.name + " ");
-                for(GraphNode neighbor : currentNode.neighbors){
-                    if(!neighbor.isVisited){
+                for (GraphNode neighbor : currentNode.neighbors) {
+                    if (!neighbor.isVisited) {
                         queue.add(neighbor);
                         neighbor.isVisited = true;
                     }
@@ -67,10 +65,35 @@ public class AdjListGraph {
 
         }
 
-        public void bfs(){
-            for(GraphNode node : nodeList){
-                if(node.isVisited == false){
+        public void bfs() {
+            for (GraphNode node : nodeList) {
+                if (node.isVisited == false) {
                     bfsVisit(node);
+                }
+            }
+        }
+
+        // DFS
+        public void dfsVisit(GraphNode node) {
+            Stack<GraphNode> stack = new Stack<>();
+            stack.push(node);
+            while (!stack.isEmpty()) {
+                GraphNode current = stack.pop();
+                current.isVisited = true;
+                System.out.print(current.name + " ");
+                for (GraphNode neighbor : current.neighbors) {
+                    if (!neighbor.isVisited) {
+                        stack.push(neighbor);
+                        neighbor.isVisited = true;
+                    }
+                }
+            }
+        }
+
+        public void dfs(){
+            for(GraphNode node : nodeList){
+                if(!node.isVisited){
+                    dfsVisit(node);
                 }
             }
         }
@@ -93,6 +116,9 @@ public class AdjListGraph {
         g.addUndirectedEdge(3, 4);
 
         System.out.println(g.toString());
-        g.bfs();
+        // System.out.println("BFS");
+        // g.bfs();
+        System.out.println("DFS");
+        g.dfs();
     }
 }
