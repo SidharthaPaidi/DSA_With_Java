@@ -5,6 +5,7 @@ public class AdjListGraph {
     public static class GraphNode {
         public String name;
         public int index;
+        public boolean isVisited = false;
 
         public ArrayList<GraphNode> neighbors = new ArrayList<GraphNode>();
 
@@ -33,7 +34,6 @@ public class AdjListGraph {
 
 
         // For printing Graph to the console
-
         public String toString() {
             StringBuilder s = new StringBuilder();
             for (int i = 0; i < nodeList.size(); i++) {
@@ -48,6 +48,31 @@ public class AdjListGraph {
                 s.append("\n");
             }
             return s.toString();
+        }
+
+        public void bfsVisit(GraphNode node){
+            LinkedList<GraphNode> queue = new LinkedList<GraphNode>();
+            queue.add(node);
+            while (!queue.isEmpty()) {
+                GraphNode currentNode = queue.remove();
+                currentNode.isVisited = true;
+                System.out.print(currentNode.name + " ");
+                for(GraphNode neighbor : currentNode.neighbors){
+                    if(!neighbor.isVisited){
+                        queue.add(neighbor);
+                        neighbor.isVisited = true;
+                    }
+                }
+            }
+
+        }
+
+        public void bfs(){
+            for(GraphNode node : nodeList){
+                if(node.isVisited == false){
+                    bfsVisit(node);
+                }
+            }
         }
     }
 
@@ -68,5 +93,6 @@ public class AdjListGraph {
         g.addUndirectedEdge(3, 4);
 
         System.out.println(g.toString());
+        g.bfs();
     }
 }
